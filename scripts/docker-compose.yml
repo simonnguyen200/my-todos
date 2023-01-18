@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - '4566:4566'
+      - "9000:9000"
+    environment:
+       - SERVICES=dynamodb
+       - DEFAULT_REGION=ap-southeast-1
+       - DATA_DIR=/tmp/localstack/data
+       - PORT_WEB_UI=9000
+       - LAMBDA_EXECUTOR=local
+       - DOCKER_HOST=unix:///var/run/docker.sock
+       - START_WEB=1
+    volumes:
+      - ./docker_data/localstack:/tmp/localstack
