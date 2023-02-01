@@ -1,12 +1,15 @@
 import { Injectable } from '@nestjs/common'
-import Todo from './todos.model'
+import { getTodos, putTodo } from 'src/db/repositories/todos'
+import { v4 as uuid } from 'uuid'
 
 @Injectable()
 export class TodosService {
-  getTodos(): string {
-    return 'Hello World!'
+  getTodos() {
+    return getTodos()
   }
-  InsertTodo(todo: Todo): string {
-    return 'Hello World!'
+  InsertTodo(title: string, description: string) {
+    const uid = uuid()
+    putTodo({ uid, title, description })
+    return uid
   }
 }

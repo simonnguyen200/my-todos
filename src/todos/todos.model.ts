@@ -1,4 +1,5 @@
 type Todo = {
+  uid: string
   title: string
   description?: string
 }
